@@ -34,6 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
     });
     on<SignInEvent>((event, emit) async{
+       // ignore: unused_local_variable
        final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: event.email, 
         password: event.password,

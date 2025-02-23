@@ -22,11 +22,8 @@ class TaskItem extends StatelessWidget{
       itemBuilder: (ctx, index) {
         
         return Dismissible(
-          
           key: ValueKey(tasks[index]),
-          
-          background: Container(
-                   
+          background: Container(       
                     color: Colors.transparent,
                      alignment: Alignment.centerRight,
                      padding: EdgeInsets.symmetric(horizontal: 20),
@@ -80,7 +77,7 @@ class TaskItem extends StatelessWidget{
               width: 80,
               decoration: BoxDecoration(color: tasks[index].isCompleted?Colors.green:Colors.red,borderRadius: BorderRadius.circular(40.0)),
               child: Center(child: Text(tasks[index].isCompleted?'Completed':'In Progress',style: TextStyle(color: Colors.white),)),
-              ), // Customize the trailing icon
+              ), 
          ),
           ),
           ),

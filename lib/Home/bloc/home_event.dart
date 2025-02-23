@@ -13,6 +13,12 @@ final class AddTaskEvent extends HomeEvent{
   AddTaskEvent( {required this.title, required this.description,required this.context,required this.dueDate, required this.priority});
 }
 final class getDataEvent extends HomeEvent{}
+
+class CategoryChanged extends HomeEvent {
+  final TaskPriority newCategory;
+  CategoryChanged(this.newCategory);
+}
+
 final class DeleteTaskEvent extends HomeEvent{
   final Task task;
   

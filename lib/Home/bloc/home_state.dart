@@ -4,6 +4,14 @@ part of 'home_bloc.dart';
 sealed class HomeState {}
 abstract class HomeActionState extends HomeState{}
 final class HomeInitial extends HomeState {}
+
+final class TaskState extends HomeState{
+  final TaskPriority selectedCategory;
+
+  TaskState({required this.selectedCategory});
+}
+
+
 final class HomeErrorState extends HomeActionState{
   final String error;
 

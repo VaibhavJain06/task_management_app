@@ -30,18 +30,9 @@ class _HomeState extends State<Home> {
  }
 
 
-  void _openAddTaskOverlay(){
-    showModalBottomSheet(
-        useSafeArea: true,
-        isScrollControlled: true,
-        context: context,
-        builder: (ctx) => NewTask(),
-    );
-  }
-
-
   @override
   Widget build(context) {
+    TaskPriority selectedCategory;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -51,6 +42,12 @@ class _HomeState extends State<Home> {
         listenWhen: (previous, current) => current is HomeActionState,
         buildWhen: (previous, current) => current is !HomeActionState,
         listener: (context, state) {
+        if(state is TaskState)
+          
+          // ignore: curly_braces_in_flow_control_structures
+          selectedCategory = state.selectedCategory;
+        
+          
         },
         builder: (context, state) {
          if(state is HomeDataLoadedState){
@@ -86,9 +83,14 @@ class _HomeState extends State<Home> {
         }
       ),
       floatingActionButton: FloatingActionButton(
-        
         onPressed: () {
-          _openAddTaskOverlay();
+          
+          showModalBottomSheet(
+             useSafeArea: true,
+             isScrollControlled: true,
+             context: context,
+             builder: (ctx) => NewTask(),
+       );
         },
         shape: CircleBorder(),
         backgroundColor: Color.fromARGB(255, 108, 99, 255),

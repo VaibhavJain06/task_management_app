@@ -126,6 +126,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       add(getDataEvent());
    },);
 
+
+
+  on<CategoryChanged>((event, emit) {
+       emit(TaskState(selectedCategory: event.newCategory));
+    });
+
+
+
    on<StatusUpdateEvent>((event, emit) {
       final user = FirebaseAuth.instance.currentUser;
       FirebaseFirestore.instance.collection('Users').doc(user!.uid).collection('Tasks').doc(event.task.id).update({
