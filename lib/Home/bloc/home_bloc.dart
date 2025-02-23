@@ -13,7 +13,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
-  HomeBloc() : super(HomeInitial()) {
+  HomeBloc() : super(TaskState(selectedCategory: TaskPriority.low)) {
     on<AddTaskEvent>((event, emit) {
       final user = FirebaseAuth.instance.currentUser;
     try{
@@ -129,7 +129,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
   on<CategoryChanged>((event, emit) {
-       emit(TaskState(selectedCategory: event.newCategory));
+    if(state is TaskState){
+      final currentState = state as TaskState;
+       emit(currentState.copyWith(selectedCategory: event.newCategory));
+    }
     });
 
 

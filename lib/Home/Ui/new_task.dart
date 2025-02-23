@@ -21,7 +21,7 @@ class _NewTaskState extends State<NewTask> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
   DateTime? _selectedDate;
-  TaskPriority _selectedCategory = TaskPriority.low;
+  
 
   void _datePicker() async {
     final now = DateTime.now();
@@ -32,7 +32,7 @@ class _NewTaskState extends State<NewTask> {
       initialDate: now,
       firstDate: firstDate,
       lastDate: lastDate,
-    );
+    );                     // changes requried
     setState(() {
       _selectedDate = pickedDate;
     });
@@ -78,7 +78,7 @@ class _NewTaskState extends State<NewTask> {
                     ),
                     Row(
                       children: [
-                        DropdownButton<TaskPriority>(
+                        DropdownButton(
                           value: currentCategory,
                           items: TaskPriority.values
                               .map(

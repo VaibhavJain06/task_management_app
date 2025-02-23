@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(context) {
-    TaskPriority selectedCategory;
+   
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -41,12 +41,7 @@ class _HomeState extends State<Home> {
         
         listenWhen: (previous, current) => current is HomeActionState,
         buildWhen: (previous, current) => current is !HomeActionState,
-        listener: (context, state) {
-        if(state is TaskState)
-          
-          // ignore: curly_braces_in_flow_control_structures
-          selectedCategory = state.selectedCategory;
-        
+        listener: (context, state) { 
           
         },
         builder: (context, state) {

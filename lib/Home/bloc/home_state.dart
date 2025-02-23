@@ -9,6 +9,11 @@ final class TaskState extends HomeState{
   final TaskPriority selectedCategory;
 
   TaskState({required this.selectedCategory});
+  TaskState copyWith({TaskPriority? selectedCategory}) {
+    return TaskState(
+      selectedCategory: selectedCategory ?? this.selectedCategory,
+    );
+  }
 }
 
 
