@@ -1,16 +1,26 @@
-# task_management_app
+# Task Management App
 
-A new Flutter project.
+## Overview
+The **Task Management App** is a Flutter-based mobile application designed to help users efficiently manage their daily tasks. It supports user authentication, task categorization, priority sorting, and real-time synchronization using Firebase.
 
-## Getting Started
+## Features
+- **User Authentication**: Sign up, log in, and log out with Firebase Authentication.
+- **Task Management**: Add, edit, delete, and mark tasks as completed.
+- **Task Filtering**: View tasks categorized as **Today**, **Tomorrow**, and **This Week**.
+- **Task Prioritization**: Tasks are sorted by priority (**High > Medium > Low**) and due date.
+- **Real-time Sync**: Firestore provides automatic task updates.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
+- **Frontend**: Flutter (Dart)
+- **State Management**: Bloc 
+- **Backend & Database**: Firebase Firestore
+- **Authentication**: Firebase Authentication
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Future Enhancements
+- Recurring task support.
+- Drag-and-drop task reordering.
+- Dark mode support.
+- Multi-language support.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
