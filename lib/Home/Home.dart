@@ -79,13 +79,13 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          
           showModalBottomSheet(
              useSafeArea: true,
              isScrollControlled: true,
              context: context,
              builder: (ctx) => NewTask(),
        );
+       
         },
         shape: CircleBorder(),
         backgroundColor: Color.fromARGB(255, 108, 99, 255),

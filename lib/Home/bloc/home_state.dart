@@ -9,11 +9,7 @@ final class TaskState extends HomeState{
   final TaskPriority selectedCategory;
 
   TaskState({required this.selectedCategory});
-  TaskState copyWith({TaskPriority? selectedCategory}) {
-    return TaskState(
-      selectedCategory: selectedCategory ?? this.selectedCategory,
-    );
-  }
+  
 }
 
 
@@ -27,8 +23,29 @@ class HomeDataLoadedState extends HomeState{
   final List<Task> todayTask;
   final List<Task> tommorowTask;
   final List<Task> thisweekTask;
+  final TaskPriority selectedCategory;
+  
+  HomeDataLoadedState(
+    
+    {required this.todayTask, 
+    required this.tommorowTask, 
+    required this.thisweekTask,
+    this.selectedCategory = TaskPriority.low,
+    });
 
-  HomeDataLoadedState({required this.todayTask, required this.tommorowTask, required this.thisweekTask});
+     HomeDataLoadedState copyWith({
+    List<Task>? todayTask,
+    List<Task>? tommorowTask,
+    List<Task>? thisweekTask,
+    TaskPriority? selectedCategory,
+  }) {
+    return HomeDataLoadedState(
+      todayTask: todayTask ?? this.todayTask,
+      tommorowTask: tommorowTask ?? this.tommorowTask,
+      thisweekTask: thisweekTask ?? this.thisweekTask,
+      selectedCategory: selectedCategory ?? this.selectedCategory,
+    );
+}
 }
 
 class LogoutState extends HomeActionState{}

@@ -47,18 +47,18 @@ class _NewTaskState extends State<NewTask> {
 
   @override
   Widget build(context) {
-    final keyBoardSpace = MediaQuery.of(context).viewInsets.bottom;
+   
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
          TaskPriority currentCategory = TaskPriority.low;
-         if(state is TaskState){
+         if(state is HomeDataLoadedState){
           currentCategory = state.selectedCategory;
          } 
         return SizedBox(
           height: double.infinity,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 16, 16, keyBoardSpace + 16),
+              padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
               child: Column(
                 children: [
                   TextField(

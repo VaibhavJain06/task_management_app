@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/Auth/bloc/auth_bloc.dart';
 
+
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -47,13 +48,11 @@ class _AuthScreenState extends State<AuthScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-            
-                
                 Container(
                   width: 64,
                   height: 64,
                   decoration: BoxDecoration(
-                    color: Color(0xFF6C63FF),
+                    color: Color.fromARGB(255, 108, 99, 255),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -155,7 +154,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ),
                 ),
-                                 SizedBox(height: 24),
+                SizedBox(height: 24),
                 
                 Text(
                   _isLogin?'Or sign up with':'or log in with',
@@ -187,10 +186,6 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => LoginScreen()),
-                        // );
                         setState(() {
                           _isLogin = !_isLogin;
                         });

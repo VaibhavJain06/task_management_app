@@ -13,7 +13,12 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
-  HomeBloc() : super(TaskState(selectedCategory: TaskPriority.low)) {
+  HomeBloc() : super(HomeDataLoadedState(
+          todayTask: [],
+          tommorowTask: [],
+          thisweekTask: [],
+          selectedCategory: TaskPriority.low,
+        )) {
     on<AddTaskEvent>((event, emit) {
       final user = FirebaseAuth.instance.currentUser;
     try{
@@ -79,9 +84,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       DateTime startOfWeek = today.subtract(Duration(days: today.weekday - 1)); 
       DateTime endOfWeek = startOfWeek.add(Duration(days: 6)); 
 
-      List<Task> tasks = taskData.docs.map((doc){
+      taskData.docs.map((doc){
         DateTime dueDate = (doc['Due date'] as Timestamp).toDate();
-      //  String priorityValue = doc['Priority']; 
+     
           Task task = Task(
           id:doc.id,
           title: doc['Title'], 
@@ -108,11 +113,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         tommorowTask.sort((a, b) => b.priority.index.compareTo(a.priority.index));
         thisweekTask.sort((a, b) => b.priority.index.compareTo(a.priority.index));
 
+      TaskPriority currentCategory = (state as HomeDataLoadedState).selectedCategory;
+
       emit(HomeDataLoadedState(
-        todayTask: todayTask, 
-        tommorowTask: tommorowTask, 
+        todayTask: todayTask,
+        tommorowTask: tommorowTask,
         thisweekTask: thisweekTask,
-        ));
+        selectedCategory: currentCategory,
+      ));
      },
    
     
@@ -129,8 +137,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
   on<CategoryChanged>((event, emit) {
-    if(state is TaskState){
-      final currentState = state as TaskState;
+    if(state is HomeDataLoadedState){
+      final currentState = state as HomeDataLoadedState;
        emit(currentState.copyWith(selectedCategory: event.newCategory));
     }
     });
@@ -170,6 +178,6 @@ bool _isSameDay(DateTime date1, DateTime date2) {
     case 'high':
       return TaskPriority.high;
     default:
-      return TaskPriority.low; // Default fallback
+      return TaskPriority.low; 
   }
 }
