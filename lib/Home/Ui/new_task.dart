@@ -53,99 +53,97 @@ class _NewTaskState extends State<NewTask> {
          TaskPriority currentCategory = TaskPriority.low;
          if(state is TaskState){
           currentCategory = state.selectedCategory;
-         }
-        return LayoutBuilder(builder: (ctx, constraints) {
-          return SizedBox(
-            height: double.infinity,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 16, 16, keyBoardSpace + 16),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: _titleController,
-                      maxLength: 50,
-                      decoration: const InputDecoration(
-                        label: Text('Title'),
-                      ),
+         } 
+        return SizedBox(
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(16, 16, 16, keyBoardSpace + 16),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _titleController,
+                    maxLength: 50,
+                    decoration: const InputDecoration(
+                      label: Text('Title'),
                     ),
-                    TextField(
-                      controller: _descriptionController,
-                      maxLength: 200,
-                      decoration: const InputDecoration(
-                        label: Text('Description'),
-                      ),
+                  ),
+                  TextField(
+                    controller: _descriptionController,
+                    maxLength: 200,
+                    decoration: const InputDecoration(
+                      label: Text('Description'),
                     ),
-                    Row(
-                      children: [
-                        DropdownButton(
-                          value: currentCategory,
-                          items: TaskPriority.values
-                              .map(
-                                (category) => DropdownMenuItem(
-                                  value: category,
-                                  child: Text(category.name.toUpperCase()),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            if (value == null) {
-                              return;
-                            }
-                            context.read<HomeBloc>().add(CategoryChanged(value));
-                          },
-                        ),
-                        const SizedBox(width: 24),
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                _selectedDate == null
-                                    ? 'No date selected'
-                                    : formatter.format(_selectedDate!),
+                  ),
+                  Row(
+                    children: [
+                      DropdownButton(
+                        value: currentCategory,
+                        items: TaskPriority.values
+                            .map(
+                              (category) => DropdownMenuItem(
+                                value: category,
+                                child: Text(category.name.toUpperCase()),
                               ),
-                              IconButton(
-                                onPressed: _datePicker,
-                                icon: const Icon(Icons.calendar_month),
-                              )
-                            ],
-                          ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          if (value == null) {
+                            return;
+                          }
+                          context.read<HomeBloc>().add(CategoryChanged(value));
+                        },
+                      ),
+                      const SizedBox(width: 24),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              _selectedDate == null
+                                  ? 'No date selected'
+                                  : formatter.format(_selectedDate!),
+                            ),
+                            IconButton(
+                              onPressed: _datePicker,
+                              icon: const Icon(Icons.calendar_month),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 36),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Cancel'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            context.read<HomeBloc>().add(AddTaskEvent(
-                                  title: _titleController.text,
-                                  description: _descriptionController.text,
-                                  dueDate: _selectedDate!,
-                                  priority: currentCategory,
-                                  context: context,
-                                ));
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Save Task'),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 36),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Cancel'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.read<HomeBloc>().add(AddTaskEvent(
+                                title: _titleController.text,
+                                description: _descriptionController.text,
+                                dueDate: _selectedDate!,
+                                priority: currentCategory,
+                                context: context,
+                              ));
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Save Task'),
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
       },
     );
   }
